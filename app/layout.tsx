@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import StoreContext from "./Context/StoreContext";
+import Navbar from "@/Components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        <script
+          src="https://kit.fontawesome.com/ff1d1ff675.js"
+          crossOrigin="anonymous"
+        async ></script>
+      </head>
+      <StoreContext>
+        <body className={inter.className}>
+          <Navbar />
+          <section className="w-11/12 mx-auto">{children}</section>
+        </body>
+      </StoreContext>
     </html>
   );
 }

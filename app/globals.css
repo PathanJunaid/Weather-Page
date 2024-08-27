@@ -6,6 +6,14 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --bg-btn-1: #5b7db1;
+  --bg-color-2: #2e3b4e;
+
+  --bg-color-light-blue: #070450;
+  --bg-color-dim-blue: #131061;
+  --bg-card-color1: #2a2954;
+  --bg-card-color2: #5f5e7f;
+  --bg-color-hero-section: #222557;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,19 +23,157 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.bg-btn-1 {
+  background-color: var(--bg-btn-1);
 }
-
+.bg-color-2 {
+  background-color: var(--bg-color-light-blue);
+}
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+img {
+  width: auto;
+  height: auto;
+}
+.card {
+  padding: 10px 10px;
+  border: 2px solid rgb(55 65 81);
+  border-radius: 10px;
+  background-color: rgb(55 65 81);
+  box-shadow: 2px 2px 2px 2px rgb(55 65 81); /*offset-x offset-y blur-radius spread-radius color inset*/
+  transform: scale(1);
+  transition: transform ease-in-out 0.3s;
+}
+.card-width-current {
+  max-width: 500px;
+  min-width: 400px;
+}
+.card:hover {
+  background-color: rgb(65, 74, 88);
+  box-shadow: 2px 2px 4px 2px rgb(0, 0, 0);
+  transform: scale(1.06);
+  transition: transform ease-in-out 0.3s;
+}
+body {
+  background: var(--bg-color-light-blue);
+  color: white;
+}
+.text-color-beige {
+  color: white;
+}
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* //Hero Section CSS */
+.Hero-Section {
+  background-color: var(--bg-color-hero-section);
+  margin: 2rem 0px 0px 0px;
+  border-radius: 2rem;
+}
+.hero-card {
+  width: 22%;
+  height: 300px;
+  border-radius: 10px;
+  background: linear-gradient(
+    145deg,
+    var(--bg-card-color1),
+    var(--bg-card-color2)
+  );
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: grid;
+  grid-template-rows: 0.5fr 0.5fr 1fr;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
+}
+#Hero-card-1 {
+  transform: rotate(342deg);
+  position: relative;
+  top: 7rem;
+  left: 3rem;
+  z-index: 0;
+}
+#Hero-card-2 {
+  position: relative;
+  top: 4rem;
+  z-index: 1;
+}
+#Hero-card-3 {
+  transform: rotate(17deg);
+  position: relative;
+  top: 7rem;
+  right: 3rem;
+  z-index: 0;
+}
+.cards-container {
+  width: -webkit-fill-available;
+}
+.Search-box {
+  /* width: 100%; */
+}
+.Search-box:focus {
+  outline: none;
+}
+.z-1 {
+  z-index: 1;
+}
+
+/* Weather Component CSS  */
+#weather {
+  background-color: var(--bg-color-dim-blue);
+  border-radius: 2rem;
+  padding: 2rem 1rem;
+  grid-template-columns: 0.8fr 1fr;
+}
+.Location-box {
+  border-radius: 4rem;
+  background: linear-gradient(
+    145deg,
+    var(--bg-card-color1),
+    var(--bg-card-color2)
+  );
+  padding: 0.5rem 1rem;
+}
+.card-indexs {
+  border-radius: 10px;
+  background: linear-gradient(
+    145deg,
+    var(--bg-card-color1),
+    var(--bg-card-color2)
+  );
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 0.5rem 1rem;
+  margin: 1rem;
+}
+.Hourly-Container {
+  grid-auto-flow: column;
+  grid-template-columns: repeat(auto-fill, 6rem);
+  /* overflow-x: auto; */
+}
+.Hourly-box{
+  border-radius: 10px;
+  background: linear-gradient(
+    145deg,
+    var(--bg-card-color1),
+    var(--bg-card-color2)
+  );
+}
+.Hourly-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border-radius: 1rem;
+}
+.Hourly-card:hover{
+  background: linear-gradient(145deg, #141279, #06052c80);
+}
+.active-card{
+  background: linear-gradient(145deg, #141279, #06052c80);
 }
