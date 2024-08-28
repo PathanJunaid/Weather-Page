@@ -56,7 +56,7 @@ const HeroSection = () => {
             {CurrentWeather?.day.condition.icon !== undefined ? (
               <Image
                 alt={"no img"}
-                src={`https:${CurrentWeather?.day.condition.icon.slice(
+                src={`https://${CurrentWeather?.day.condition.icon.slice(
                   2,
                   CurrentWeather?.day.condition.icon.length
                 )}`}
@@ -86,7 +86,7 @@ const HeroSection = () => {
             {CurrentWeather?.day.condition.icon !== undefined ? (
               <Image
                 alt={"no img"}
-                src={`https:${CurrentWeather?.day.condition.icon.slice(
+                src={`https://${CurrentWeather?.day.condition.icon.slice(
                   2,
                   CurrentWeather?.day.condition.icon.length
                 )}`}
@@ -116,7 +116,7 @@ const HeroSection = () => {
             {CurrentWeather?.day.condition.icon !== undefined ? (
               <Image
                 alt={"no img"}
-                src={`https:${CurrentWeather?.day.condition.icon.slice(
+                src={`https://${CurrentWeather?.day.condition.icon.slice(
                   2,
                   CurrentWeather?.day.condition.icon.length
                 )}`}

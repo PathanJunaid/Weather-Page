@@ -206,44 +206,6 @@ const Weather = () => {
               if (index < variable && Date === 0) {
                 return "";
               }
-              // else if (index === variable) {
-              //   return (
-              //     <div
-              //       key={index}
-              //       className={
-              //         HourlyIndex === null
-              //           ? "active-card Hourly-card px-2 py-3"
-              //           : "Hourly-card px-2 py-3"
-              //       }
-              //       onClick={(e) => {
-              //         HandleHourChange(index);
-              //       }}
-              //     >
-              //       <h6>{index===CurIndex && Date===0? "Now" : ele.time.split(" ")[1]}</h6>
-              //       <h3 className="text-2xl">
-              //         {ele.temp_c}
-              //         <sup>
-              //           <sup>
-              //             <span className="text-sm">
-              //               <i className="fa-regular fa-circle fa-2xs "></i>
-              //             </span>
-              //           </sup>
-              //         </sup>
-              //       </h3>
-              //       <div>
-              //         <Image
-              //           src={`https:${ele.condition.icon.slice(
-              //             2,
-              //             ele.condition.icon.length
-              //           )}`}
-              //           width={"80"}
-              //           height={"30"}
-              //           alt={"img"}
-              //         />
-              //       </div>
-              //     </div>
-              //   );
-              // }
               return (
                 <div
                   key={index}
@@ -273,7 +235,7 @@ const Weather = () => {
                   </h3>
                   <div>
                     <Image
-                      src={`https:${ele.condition.icon.slice(
+                      src={`https://${ele.condition.icon.slice(
                         2,
                         ele.condition.icon.length
                       )}`}
@@ -323,7 +285,7 @@ const Weather = () => {
                   </h3>
                   <div className="w-fit">
                     <Image
-                      src={`https:${ele?.day.condition.icon.slice(
+                      src={`https://${ele?.day.condition.icon.slice(
                         2,
                         ele?.day.condition.icon.length
                       )}`}
