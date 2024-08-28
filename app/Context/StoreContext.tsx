@@ -30,6 +30,8 @@ interface PropsInterface {
   getCitydata: () => void;
   error : string;
   seterror : React.Dispatch<React.SetStateAction<string>>;
+  Pageload:boolean;
+  setPageload : React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const defaultContextValue: PropsInterface = {
@@ -52,7 +54,9 @@ const defaultContextValue: PropsInterface = {
     Extreme: "avoid sun, use high SPF sunscreen, and cover up.",
   },
   error : "",
-  seterror : ()=>{}
+  seterror : ()=>{},
+  Pageload : false,
+  setPageload : ()=>{}
 };
 
 // Create the context with a default value
@@ -69,6 +73,7 @@ const StoreContext: React.FC<StoreContextProps> = ({ children }) => {
   const [CurrentWeather, setCurrentWeather] = useState<ForecastDay | null>(
     null
   );
+  const [Pageload, setPageload] = useState<boolean>(false);
   const [InputValue, setInputValue] = useState<string>("");
   const [Forecast, setForecast] = useState<Interface_Forecast | null>(null);
   const [CurLocation, setCurLocation] = useState<Interface_CurLocation | null>(
@@ -97,6 +102,11 @@ const StoreContext: React.FC<StoreContextProps> = ({ children }) => {
       });
   };
   const getCitydata = async (): Promise<void> => {
+    if(InputValue === ""){
+      // console.log("Blank")
+      setPageload(false)
+      return
+    }
     let response ;
     try {
       response = await axios.post(
@@ -106,6 +116,7 @@ const StoreContext: React.FC<StoreContextProps> = ({ children }) => {
         setCurrentWeather(response.data.forecast.forecastday[0]);
         setForecast(response.data.forecast);
         setCurLocation(response.data.location);
+        setPageload(false)
       
     } catch (e) {
 
@@ -151,7 +162,8 @@ const StoreContext: React.FC<StoreContextProps> = ({ children }) => {
     InputValue,
     setInputValue,
     getCitydata,
-    error,seterror
+    error,seterror,
+    Pageload, setPageload,
   };
 
   return <Context.Provider value={props}>{children}</Context.Provider>;

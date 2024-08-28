@@ -3,13 +3,15 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "./Context/StoreContext";
 import HeroSection from "@/Components/HeroSection";
 import Weather from "@/Components/Weather";
+import Loading from '@/Components/Loading'
 export default function Home() {
   const {
     getcurrentlocation,
     getweatherdata,
     position,
+    Pageload
   } = useContext(Context);
-  const [load, setload] = useState(true);
+  const [load,setload] = useState(true)
   useEffect(() => {
     const handleLocationFetch = async () => {
       const success = await getcurrentlocation();
@@ -28,8 +30,8 @@ export default function Home() {
       getweatherdata();
     }
   }, [load, position]);
-  if (load) {
-    return <p>Loading</p>;
+  if (load || Pageload) {
+    return <Loading/>;
   } else {
     return (
       <>

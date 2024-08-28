@@ -59,7 +59,7 @@ const Weather = () => {
   });
   useMemo(() => {}, []);
   return (
-    <div className="grid gap-x-8 mt-12" id="weather">
+    <div className="grid gap-x-8 my-12" id="weather">
       {/* left Container  */}
       <div className="grid left-container">
         {/* Location */}
@@ -140,7 +140,7 @@ const Weather = () => {
               </h5>
             </div>
             {/* Wind  */}
-            <div className="card-indexs grid grid-cols-2">
+            <div className="card-indexs grid grid-rows-1 lg:grid-cols-2">
               <div>
                 <h5 className="">
                   <i className="fa-solid fa-wind"></i>
@@ -176,7 +176,7 @@ const Weather = () => {
                   </div>
                 </div>
               </div>
-              <div className="px-2">
+              <div className="lg:px-2 py-2 lg:py-0">
                 <h3>
                   <i className="fa-regular fa-compass"></i>
                   <span>&nbsp;Direction</span>
@@ -185,17 +185,6 @@ const Weather = () => {
                   {CurTimeTemp?.wind_dir}
                 </h2>
               </div>
-              {/* <i className="fa-solid fa-temperature-three-quarters"></i>
-              <span> UV Index</span>
-              <h3 className="mt-2">{CurTimeTemp?.uv}</h3>
-              <h6 className="text-sm">{UV_Index}</h6>
-              <input type="range" name="" id="" className="uv-range" value={CurTimeTemp?.uv === undefined ? 0 : CurTimeTemp?.uv } min={0} max={13} />
-              <h5 className="text-sm">
-              Precautions : &nbsp;
-                {
-                  UV_Text[UV_Index]
-                }
-              </h5> */}
             </div>
           </div>
         </div>

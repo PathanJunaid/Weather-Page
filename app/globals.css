@@ -127,10 +127,10 @@ body {
   padding: 2rem 1rem;
   grid-template-columns: 0.7fr 1fr;
 }
-.left-container{
+.left-container {
   grid-template-rows: auto auto auto;
 }
-.right-container{
+.right-container {
   display: flex;
   flex-direction: column;
   overflow: auto;
@@ -167,8 +167,8 @@ body {
   scrollbar-color: #131061 transparent; /* For Firefox */
   /* overflow-x: auto; */
 }
-.Hourly-box{
-  overflow-x: auto; 
+.Hourly-box {
+  overflow-x: auto;
   border-radius: 10px;
   background: linear-gradient(
     145deg,
@@ -185,10 +185,10 @@ body {
   border-radius: 1rem;
   width: max-content;
 }
-.Hourly-card:hover{
+.Hourly-card:hover {
   background: linear-gradient(145deg, #141279, #06052c80);
 }
-.active-card{
+.active-card {
   background: linear-gradient(145deg, #141279, #06052c80);
 }
 
@@ -208,7 +208,6 @@ body {
   );
   outline: none;
   transition: background 0.3s ease-in-out;
-
 }
 
 .uv-range::-webkit-slider-thumb {
@@ -234,7 +233,6 @@ body {
 .Hour_Container::-webkit-scrollbar {
   width: 8px; /* Adjust the width of the scrollbar */
   height: 8px; /* Adjust the height for horizontal scrollbar */
-  
 }
 
 .Hour_Container::-webkit-scrollbar-thumb {
@@ -248,4 +246,75 @@ body {
 
 .Hour_Container::-webkit-scrollbar-track {
   background: transparent; /* Scrollbar track color */
+}
+/* Loading Effect Spinner CSS */
+
+.lds-ring,
+.lds-ring div {
+  box-sizing: border-box;
+}
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid currentColor;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: currentColor transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.translate-spinner{
+  top: 44%;
+  left: 46%;
+  --tw-translate: -50%, -50%;
+}
+/* Responsiveness  */
+
+@media screen and (min-width: 100px) and (max-width : 640px) {
+  .Search-box {
+    width: 90%;
+  }
+  .img-hero-section{
+    width: 50px;
+  }
+}
+@media screen and (min-width: 640px) {
+}
+
+@media screen and (max-width: 768px) {
+  #weather {
+    grid-template-rows: auto auto;
+    grid-template-columns: none;
+  }
+}
+@media screen and (max-width: 980px) {
+  .hero-card{
+    width : 39%;
+  }
 }

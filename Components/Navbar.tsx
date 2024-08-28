@@ -12,8 +12,8 @@ const Navbar = () => {
           <Link href="/">Weather</Link>
         </div>
         <div className="grid grid-cols-2">
-          <Link href="/">Home</Link>
-          <Link href="#Contact">Contact</Link>
+          {/* <Link href="/">Home</Link> */}
+          {/* <Link href="#Weather">Location</Link> */}
         </div>
       </nav>
     </div>
