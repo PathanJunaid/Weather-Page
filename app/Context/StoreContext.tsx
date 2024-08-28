@@ -90,7 +90,7 @@ const StoreContext: React.FC<StoreContextProps> = ({ children }) => {
   const getweatherdata = async (): Promise<void> => {
     await axios
       .post(
-        `http://api.weatherapi.com/v1/forecast.json?key=${process.env.NEXT_PUBLIC_Weather_API}&q=${position.lat},${position.long}&days=10&aqi=yes&alerts=yes`
+        `https://api.weatherapi.com/v1/forecast.json?key=${process.env.NEXT_PUBLIC_Weather_API}&q=${position.lat},${position.long}&days=10&aqi=yes&alerts=yes`
       )
       .then((res) => {
         setCurrentWeather(res.data.forecast.forecastday[0]);
@@ -110,7 +110,7 @@ const StoreContext: React.FC<StoreContextProps> = ({ children }) => {
     let response ;
     try {
       response = await axios.post(
-        `http://api.weatherapi.com/v1/forecast.json?key=${process.env.NEXT_PUBLIC_Weather_API}&q=${InputValue}&days=10&aqi=yes&alerts=yes`
+        `https://api.weatherapi.com/v1/forecast.json?key=${process.env.NEXT_PUBLIC_Weather_API}&q=${InputValue}&days=10&aqi=yes&alerts=yes`
       );
       
         setCurrentWeather(response.data.forecast.forecastday[0]);

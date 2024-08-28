@@ -2,6 +2,7 @@ import { Context } from "@/app/Context/StoreContext";
 import Image from "next/image";
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Hour } from "@/app/Context/Interface_file";
+import '@/app/globals.css'
 type UVCategory = "Low" | "Modarate" | "High" | "Very_High" | "Extreme";
 const Weather = () => {
   const { UV_Text, CurrentWeather, CurLocation, Forecast, setCurrentWeather } =

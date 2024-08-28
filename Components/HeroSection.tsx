@@ -1,6 +1,7 @@
 import { Context } from "@/app/Context/StoreContext";
 import React, { FormEvent, useContext, useState } from "react";
 import Image from "next/image";
+import '@/app/globals.css'
 
 const HeroSection = () => {
   const { CurrentWeather,InputValue, setInputValue,getCitydata, error,seterror, setPageload } = useContext(Context);
