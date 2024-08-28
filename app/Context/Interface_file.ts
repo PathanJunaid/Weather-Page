@@ -82,7 +82,7 @@ interface Astro {
     moon_illumination: string; // Illumination percentage of the moon
 }
 
-interface Hour {
+export interface Hour {
     time: string;             // Time of the hour forecast
     temp_c: number;           // Temperature in Celsius
     temp_f: number;           // Temperature in Fahrenheit
@@ -142,6 +142,14 @@ export interface Interface_CurLocation {
     name: string;              // Name of the location (e.g., city)
     region: string;            // Region or state name
     tz_id: string;             // Timezone identifier
-  }
-  
+}
+
 //   export default {AirQuality,Condition,Interface_CurrentWeather} ;
+
+export interface Uv_Interface {
+    Low: string,
+    Modarate: string,
+    High: string,
+    Very_High: string,
+    Extreme: string,
+}

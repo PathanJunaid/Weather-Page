@@ -34,10 +34,6 @@
   padding: 0px;
   box-sizing: border-box;
 }
-img {
-  width: auto;
-  height: auto;
-}
 .card {
   padding: 10px 10px;
   border: 2px solid rgb(55 65 81);
@@ -129,7 +125,15 @@ body {
   background-color: var(--bg-color-dim-blue);
   border-radius: 2rem;
   padding: 2rem 1rem;
-  grid-template-columns: 0.8fr 1fr;
+  grid-template-columns: 0.7fr 1fr;
+}
+.left-container{
+  grid-template-rows: auto auto auto;
+}
+.right-container{
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
 }
 .Location-box {
   border-radius: 4rem;
@@ -152,11 +156,19 @@ body {
   margin: 1rem;
 }
 .Hourly-Container {
+  display: grid;
   grid-auto-flow: column;
   grid-template-columns: repeat(auto-fill, 6rem);
+  overflow-x: auto; /* Enable horizontal scrolling */
+  max-width: 100%; /* Set a max width for the container */
+  padding-bottom: 0.5rem;
+  /* This sets the width of the scrollbar */
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #131061 transparent; /* For Firefox */
   /* overflow-x: auto; */
 }
 .Hourly-box{
+  overflow-x: auto; 
   border-radius: 10px;
   background: linear-gradient(
     145deg,
@@ -168,12 +180,72 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   text-align: center;
   border-radius: 1rem;
+  width: max-content;
 }
 .Hourly-card:hover{
   background: linear-gradient(145deg, #141279, #06052c80);
 }
 .active-card{
   background: linear-gradient(145deg, #141279, #06052c80);
+}
+
+.uv-range {
+  --thumb-color: #ffffff;
+  width: 100%;
+  appearance: none;
+  height: 10px;
+  border-radius: 5px;
+  background: linear-gradient(
+    90deg,
+    green 0%,
+    yellow 20%,
+    orange 40%,
+    red 60%,
+    purple 80%
+  );
+  outline: none;
+  transition: background 0.3s ease-in-out;
+
+}
+
+.uv-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--thumb-color);
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.uv-range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--thumb-color);
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+/* WebKit-based browsers */
+.Hour_Container::-webkit-scrollbar {
+  width: 8px; /* Adjust the width of the scrollbar */
+  height: 8px; /* Adjust the height for horizontal scrollbar */
+  
+}
+
+.Hour_Container::-webkit-scrollbar-thumb {
+  background-color: #131061; /* Scrollbar thumb color */
+  border-radius: 20px; /* Optional: round the scrollbar edges */
+  /* border-radius: 10px; Rounds the scrollbar thumb edges */
+  /* Adding extra properties for compatibility */
+  border: 2px solid transparent; /* Adds space around thumb to create rounded effect */
+  background-clip: content-box; /* Ensures the rounded effect is visible */
+}
+
+.Hour_Container::-webkit-scrollbar-track {
+  background: transparent; /* Scrollbar track color */
 }
