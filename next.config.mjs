@@ -1,9 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ["cdn.weatherapi.com"]
-
-    },
+        remotePatterns: [
+          {
+            protocol: 'https',
+            hostname: 'cdn.weatherapi.com',
+            // Optional: specify a path pattern if needed
+            pathname: '**',
+          },
+        ],
+      },
     devIndicators: {
         autoPrerender: false,
     },

@@ -133,6 +133,7 @@ const Weather = () => {
                 value={CurTimeTemp?.uv === undefined ? 0 : CurTimeTemp?.uv}
                 min={0}
                 max={13}
+                readOnly
               />
               <h5 className="text-sm">
                 Precautions : &nbsp;
