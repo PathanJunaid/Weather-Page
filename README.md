@@ -40,7 +40,7 @@ yarn install
 ```
 ## Set Up Environment Variables
 
-Create a `.env.local` file in the root of your project and add your API key:
+Create a `.env.development` file in the root of your project and add your API key:
 
 ```bash
 NEXT_PUBLIC_Weather_API=your_api_key_here
