@@ -1,5 +1,7 @@
 "use client";
 import axios from "axios";
+
+import { toast } from "react-toastify";
 import React, { createContext, ReactNode, useState } from "react";
 import {
   ForecastDay,
@@ -28,10 +30,12 @@ interface PropsInterface {
   InputValue: string;
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
   getCitydata: () => void;
-  error : string;
-  seterror : React.Dispatch<React.SetStateAction<string>>;
-  Pageload:boolean;
-  setPageload : React.Dispatch<React.SetStateAction<boolean>>;
+  error: string;
+  seterror: React.Dispatch<React.SetStateAction<string>>;
+  Pageload: boolean;
+  setPageload: React.Dispatch<React.SetStateAction<boolean>>;
+  notifyError: (msg: string) => void;
+  notifySuccess: (msg: string) => void;
 }
 
 const defaultContextValue: PropsInterface = {
@@ -53,10 +57,12 @@ const defaultContextValue: PropsInterface = {
     Very_High: "seek shade and limit sun exposure.",
     Extreme: "avoid sun, use high SPF sunscreen, and cover up.",
   },
-  error : "",
-  seterror : ()=>{},
-  Pageload : false,
-  setPageload : ()=>{}
+  error: "",
+  seterror: () => {},
+  Pageload: false,
+  setPageload: () => {},
+  notifyError: () => {},
+  notifySuccess: () => {},
 };
 
 // Create the context with a default value
@@ -68,7 +74,7 @@ interface StoreContextProps {
 
 // StoreContext component
 const StoreContext: React.FC<StoreContextProps> = ({ children }) => {
-  const [error,seterror] = useState<string>("")
+  const [error, seterror] = useState<string>("");
   const [position, setposition] = useState<Posi>({ lat: 0, long: 0 });
   const [CurrentWeather, setCurrentWeather] = useState<ForecastDay | null>(
     null
@@ -79,6 +85,9 @@ const StoreContext: React.FC<StoreContextProps> = ({ children }) => {
   const [CurLocation, setCurLocation] = useState<Interface_CurLocation | null>(
     null
   );
+
+  const notifyError = (msg : String) => toast.error(msg,{theme:"colored"});
+  const notifySuccess = (msg : String) => toast.success(msg,{theme:"colored"})
   const UV_Text: Uv_Interface = {
     Low: "sunglasses recommended.",
     Modarate: "wear sunscreen and sunglasses.",
@@ -98,32 +107,34 @@ const StoreContext: React.FC<StoreContextProps> = ({ children }) => {
         setCurLocation(res.data.location);
       })
       .catch((e) => {
+        // notifyError('Unable to fetch Weather data');
         console.log("Unable to fetch Weather data" + e);
       });
   };
   const getCitydata = async (): Promise<void> => {
-    if(InputValue === ""){
+    if (InputValue === "") {
       // console.log("Blank")
-      setPageload(false)
-      return
+      setPageload(false);
+      return;
     }
-    let response ;
+    let response;
     try {
       response = await axios.post(
         `https://api.weatherapi.com/v1/forecast.json?key=${process.env.NEXT_PUBLIC_Weather_API}&q=${InputValue}&days=10&aqi=yes&alerts=yes`
       );
-      
-        setCurrentWeather(response.data.forecast.forecastday[0]);
-        setForecast(response.data.forecast);
-        setCurLocation(response.data.location);
-        setPageload(false)
-      
-    } catch (e) {
 
-      alert(`City with name ${InputValue} not found. Please try with exact name or refresh page to automatically detect you location.`)
-      setInputValue("")
+      setCurrentWeather(response.data.forecast.forecastday[0]);
+      setForecast(response.data.forecast);
+      setCurLocation(response.data.location);
+    } catch (e) {
+      notifyError(`City with name ${InputValue} not found.`)
+      // alert(
+      //   `City with name ${InputValue} not found. Please try with exact name or refresh page to automatically detect you location.`
+      // );
+      setPageload(false)
+      setInputValue("");
     }
-    
+    setPageload(false);
   };
   const getcurrentlocation = (): Promise<boolean> => {
     return new Promise((resolve) => {
@@ -138,11 +149,13 @@ const StoreContext: React.FC<StoreContextProps> = ({ children }) => {
           },
           (error) => {
             // Error callback function
+            notifyError(`Error : ${error.message} \n Solution : Search by City name`)
             console.error("Error getting location: ", error);
             resolve(false); // Failed to retrieve position
           }
         );
       } else {
+        notifyError("Geolocation is not supported by this browser.")
         console.error("Geolocation is not supported by this browser.");
         resolve(false); // Geolocation not supported
       }
@@ -162,8 +175,11 @@ const StoreContext: React.FC<StoreContextProps> = ({ children }) => {
     InputValue,
     setInputValue,
     getCitydata,
-    error,seterror,
-    Pageload, setPageload,
+    error,
+    seterror,
+    Pageload,
+    setPageload,
+    notifyError,notifySuccess
   };
 
   return <Context.Provider value={props}>{children}</Context.Provider>;
