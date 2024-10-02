@@ -3,41 +3,50 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "./Context/StoreContext";
 import HeroSection from "@/Components/HeroSection";
 import Weather from "@/Components/Weather";
-import Loading from '@/Components/Loading';
-import './globals.css';
+import Loading from "@/Components/Loading";
+import "./globals.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function Home() {
   const {
     getcurrentlocation,
     getweatherdata,
     position,
-    Pageload
+    Pageload,
   } = useContext(Context);
-  const [load,setload] = useState(true)
+  const [load, setload] = useState(true);
   useEffect(() => {
     const handleLocationFetch = async () => {
       const success = await getcurrentlocation();
       if (success) {
-        setload(false);
         console.log("Location fetched successfully");
       } else {
-        setload(true);
+        // setload(false);
         console.log("Failed to fetch location");
       }
     };
     if (load) {
       handleLocationFetch();
+      setload(false);
     } else {
       getweatherdata();
-      setload(false)
+      setload(false);
     }
   }, [load, position]);
+  // notify();
   if (load || Pageload) {
-    return <Loading/>;
+    return (
+      <>
+        <Loading />;
+        <ToastContainer />
+      </>
+    );
   } else {
     return (
       <>
         <HeroSection />
         <Weather />
+        <ToastContainer />
       </>
     );
   }
